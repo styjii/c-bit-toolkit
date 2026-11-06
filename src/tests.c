@@ -61,7 +61,7 @@ int executer_tests(void)
 
     verifier(bits_necessaires(100) == 7, "100 valeurs -> 7 bits");
     verifier(bits_necessaires(256) == 8, "256 valeurs -> 8 bits");
-    verifier(bits_necessaires(1500ull << 20) == 31, "1500 Mo (adressage a l'octet) -> 31 bits");
+    verifier(bits_necessaires(1500ull << 20u) == 31, "1500 Mo (adressage a l'octet) -> 31 bits");
 
     verifier(gray_coder(9) == 0xD, "Gray(9) = 1101");
     verifier(gray_decoder(0x6) == 4, "Gray 0110 -> 4");

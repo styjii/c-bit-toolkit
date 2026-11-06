@@ -159,7 +159,7 @@ bool base_en_reel(const char *s, unsigned base, double *resultat)
          * d'accumuler quand den dépasse 2^53 : les chiffres suivants sont
          * au-delà de la précision d'un double (ils restent contrôlés). */
         uint64_t num = 0, den = 1;
-        const uint64_t LIMITE = UINT64_C(1) << 53;
+        const uint64_t LIMITE = UINT64_C(1) << 53u;
 
         for (const char *p = virgule + 1; *p != '\0'; p++) {
             int d = valeur_chiffre(*p);

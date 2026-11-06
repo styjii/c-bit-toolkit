@@ -3,6 +3,7 @@
  */
 #include "saisie.h"
 
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,12 +12,18 @@
  * avoir affiché `invite`. Retourne false en fin de fichier (Ctrl+D). */
 bool lire_ligne(const char *invite, char *tampon, size_t taille)
 {
+    if (tampon == NULL || taille == 0 || taille > (size_t)INT_MAX) {
+        return false; /* fgets attend une taille de type int, strictement positive */
+    }
     printf("%s", invite);
     fflush(stdout);
     if (fgets(tampon, (int)taille, stdin) == NULL) {
         return false;
     }
-    tampon[strcspn(tampon, "\r\n")] = '\0';
+    size_t fin = strcspn(tampon, "\r\n"); /* position du retour à la ligne */
+    if (fin < taille) {                    /* toujours vrai : garde explicite */
+        tampon[fin] = '\0';
+    }
     return true;
 }
 

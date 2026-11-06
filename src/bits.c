@@ -83,9 +83,11 @@ void afficher_bits(uint32_t x, unsigned largeur)
     if (largeur < 1 || largeur > 32) {
         largeur = 32;
     }
-    for (unsigned i = largeur; i-- > 0;) {
-        putchar(bit_lire(x, i) ? '1' : '0');
-        if (i % 4 == 0 && i != 0) {
+    for (unsigned i = largeur; i > 0; i--) {
+        unsigned rang = i - 1; /* rang du bit affiché : largeur - 1, ..., 0 */
+
+        putchar(bit_lire(x, rang) ? '1' : '0');
+        if (rang % 4 == 0 && rang != 0) {
             putchar(' ');
         }
     }

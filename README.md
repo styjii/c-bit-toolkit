@@ -17,6 +17,7 @@ Ce projet est issu du cours d'Automatisme (LTP Alarobia, 2nde FTG). Il illustre 
 c-bit-toolkit/
 ├── CMakeLists.txt
 ├── README.md
+├── compile_flags.txt
 ├── include/
 │   ├── base_conv.h
 │   ├── bits.h
@@ -54,7 +55,7 @@ Les quatre premiers modules forment la bibliothèque statique `bitslib` (sans en
 ## Prérequis
 
 - Un compilateur C compatible C99 (GCC, Clang ou MSVC)
-- CMake 3.10 ou plus récent
+- CMake 3.14 ou plus récent
 
 ## Compilation
 
@@ -106,6 +107,31 @@ Base de depart (2-36) : 10
 Base d'arrivee (2-36) : 2
 Nombre (ex. 110001.001) : 49.125
 (49.125)_10 = 49.125 en decimal = (110001.001)_2
+```
+
+## Configuration de l'éditeur (Vim, LSP)
+
+Les en-têtes sont dans `include/` et les sources les incluent par leur nom (`#include "bits.h"`). Le compilateur les trouve grâce à l'option `-Iinclude` ajoutée par CMake. Un serveur LSP comme **clangd** ne connaît pas cette option : sans configuration, il signale `'bits.h' file not found` alors que le projet compile très bien.
+
+Le projet fournit deux sources d'information pour l'éditeur :
+
+| Fichier | Origine | Rôle |
+|---------|---------|------|
+| `compile_commands.json` | généré par CMake (lien créé à la racine) | options exactes de chaque fichier ; prioritaire |
+| `compile_flags.txt` | versionné dans le dépôt | repli : `-Iinclude`, C99 et avertissements, utilisé même sans compilation préalable |
+
+Mise en route :
+
+```bash
+cmake -S . -B build        # génère build/compile_commands.json et le lien à la racine
+```
+
+Puis redémarrer le serveur LSP dans Vim (`:LspRestart` avec vim-lsp, `:CocRestart` avec coc.nvim). Les plugins qui s'appuient sur clangd (vim-lsp, coc-clangd, ALE, YouCompleteMe) utilisent ces fichiers automatiquement.
+
+Sous Windows, si le lien symbolique ne peut pas être créé, copier le fichier à la main :
+
+```bash
+cmake -E copy build/compile_commands.json .
 ```
 
 ## Limites

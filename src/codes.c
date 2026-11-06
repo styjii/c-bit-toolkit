@@ -39,7 +39,7 @@ bool bcd_decoder(uint32_t bcd, uint32_t *n)
         }
         resultat += quartet * poids;
         poids *= 10u;
-        bcd >>= 4;
+        bcd >>= 4u;
     } while (bcd != 0);
     *n = resultat;
     return true;
@@ -50,7 +50,7 @@ bool bcd_decoder(uint32_t bcd, uint32_t *n)
  * ce qui s'écrit simplement  g = b ^ (b >> 1). */
 uint32_t gray_coder(uint32_t b)
 {
-    return b ^ (b >> 1);
+    return b ^ (b >> 1u);
 }
 
 /* gray_decoder : code Gray -> binaire naturel. Chaque bit du résultat est le
@@ -59,7 +59,7 @@ uint32_t gray_coder(uint32_t b)
 uint32_t gray_decoder(uint32_t g)
 {
     uint32_t b = 0;
-    for (; g != 0; g >>= 1) {
+    for (; g != 0; g >>= 1u) {
         b ^= g;
     }
     return b;

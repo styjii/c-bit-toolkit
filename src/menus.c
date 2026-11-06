@@ -98,8 +98,8 @@ static void menu_operations(void)
     printf("\nA OU B     = "); afficher_bits(x | y, 32);
     printf("\nA XOR B    = "); afficher_bits(x ^ y, 32);
     printf("\nNON A      = "); afficher_bits(~x, 32);
-    printf("\nA << 1     = "); afficher_bits(x << 1, 32);
-    printf("\nA >> 1     = "); afficher_bits(x >> 1, 32);
+    printf("\nA << 1     = "); afficher_bits(x << 1u, 32);
+    printf("\nA >> 1     = "); afficher_bits(x >> 1u, 32);
     printf("\nRotG(A,1)  = "); afficher_bits(rotation_gauche(x, 1), 32);
     printf("\nRotD(A,1)  = "); afficher_bits(rotation_droite(x, 1), 32);
     printf("\nBits a 1 dans A : %u ; A est une puissance de 2 : %s\n",
@@ -133,11 +133,12 @@ static void menu_capacite(void)
                    (unsigned long long)v);
         }
     } else if (choix == 2) {
-        if (lire_entier("Capacite en Mo (1 Mo = 2^20 octets) : ", &v) && v >= 1 && v < (UINT64_C(1) << 40)) {
-            uint64_t octets = v << 20;
+        if (lire_entier("Capacite en Mo (1 Mo = 2^20 octets) : ", &v) && v >= 1 && v < (UINT64_C(1) << 40u)) {
+            uint64_t octets = v << 20u;
+            unsigned long long bits_stockage = (unsigned long long)octets * 8u;
+
             printf("%llu Mo = %llu octets = %llu bits de stockage\n",
-                   (unsigned long long)v, (unsigned long long)octets,
-                   (unsigned long long)(octets * 8));
+                   (unsigned long long)v, (unsigned long long)octets, bits_stockage);
             printf("Bits d'adresse (1 adresse par octet) : %u\n", bits_necessaires(octets));
         } else {
             printf("Valeur invalide.\n");
