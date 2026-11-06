@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(manip_bits
+project(c-bit-toolkit
         VERSION 1.0.0
         DESCRIPTION "Manipulation de bits et conversions de bases en C"
         LANGUAGES C)
@@ -25,23 +25,23 @@ add_library(bitslib STATIC
 target_include_directories(bitslib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # --- Exécutable : interface, tests et point d'entrée --------------------------
-add_executable(manip_bits
+add_executable(c-bit-toolkit
     src/main.c
     src/menus.c
     src/saisie.c
     src/tests.c
 )
-target_link_libraries(manip_bits PRIVATE bitslib)
+target_link_libraries(c-bit-toolkit PRIVATE bitslib)
 
 # --- Avertissements du compilateur --------------------------------------------
 if(MSVC)
-    set(MANIP_WARNINGS /W4)
+    set(PROJECT_WARNINGS /W4)
 else()
-    set(MANIP_WARNINGS -Wall -Wextra -pedantic)
+    set(PROJECT_WARNINGS -Wall -Wextra -pedantic)
 endif()
-target_compile_options(bitslib PRIVATE ${MANIP_WARNINGS})
-target_compile_options(manip_bits PRIVATE ${MANIP_WARNINGS})
+target_compile_options(bitslib PRIVATE ${PROJECT_WARNINGS})
+target_compile_options(c-bit-toolkit PRIVATE ${PROJECT_WARNINGS})
 
 # --- Tests (ctest) ------------------------------------------------------------
 enable_testing()
-add_test(NAME tests_automatiques COMMAND manip_bits --test)
+add_test(NAME tests_automatiques COMMAND c-bit-toolkit --test)

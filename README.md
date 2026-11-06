@@ -1,4 +1,4 @@
-# manip_bits
+# c-bit-toolkit
 
 Manipulation de bits et conversions de bases en C (norme C99), avec un menu interactif et des tests automatiques.
 
@@ -14,7 +14,7 @@ Ce projet est issu du cours d'Automatisme (LTP Alarobia, 2nde FTG). Il illustre 
 ## Arborescence
 
 ```
-manip_bits/
+c-bit-toolkit/
 ├── CMakeLists.txt
 ├── README.md
 ├── include/
@@ -49,7 +49,7 @@ manip_bits/
 | `tests` | Tests automatiques issus de la fiche d'exercices |
 | `main` | Point d'entrée |
 
-Les quatre premiers modules forment la bibliothèque statique `bitslib` (sans entrées/sorties interactives). Les autres composent l'exécutable `manip_bits`.
+Les quatre premiers modules forment la bibliothèque statique `bitslib` (sans entrées/sorties interactives). Les autres composent l'exécutable `c-bit-toolkit`.
 
 ## Prérequis
 
@@ -63,20 +63,20 @@ cmake -S . -B build
 cmake --build build
 ```
 
-L'exécutable est généré dans `build/` (`build/manip_bits`). Avec un générateur multi-configuration (Visual Studio, par exemple), il se trouve dans `build/Release/` ou `build/Debug/`.
+L'exécutable est généré dans `build/` (`build/c-bit-toolkit`). Avec un générateur multi-configuration (Visual Studio, par exemple), il se trouve dans `build/Release/` ou `build/Debug/`.
 
 ## Utilisation
 
 Menu interactif :
 
 ```bash
-./build/manip_bits
+./build/c-bit-toolkit
 ```
 
 Tests automatiques uniquement (code de retour 0 si tout réussit) :
 
 ```bash
-./build/manip_bits --test
+./build/c-bit-toolkit --test
 ```
 
 Tests via CTest :

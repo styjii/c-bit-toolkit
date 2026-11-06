@@ -23,7 +23,7 @@ install_manifest.txt
 *.dylib
 *.dll
 *.exe
-/manip_bits
+/c-bit-toolkit
 
 # Débogage et profilage
 *.dSYM/

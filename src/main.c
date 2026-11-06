@@ -1,8 +1,8 @@
 /*
- * main.c -- Point d'entrée de manip_bits
+ * main.c -- Point d'entrée de c-bit-toolkit
  *
- *  Exécution :  ./manip_bits          (menu interactif)
- *               ./manip_bits --test   (tests automatiques uniquement)
+ *  Exécution :  ./c-bit-toolkit          (menu interactif)
+ *               ./c-bit-toolkit --test   (tests automatiques uniquement)
  */
 #include <stdlib.h>
 #include <string.h>
