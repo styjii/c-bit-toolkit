@@ -1,0 +1,48 @@
+# Dossiers de build CMake
+build/
+build-*/
+cmake-build-*/
+out/
+
+# Fichiers générés par CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+Makefile
+compile_commands.json
+install_manifest.txt
+
+# Fichiers objets, bibliothèques et exécutables
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+/manip_bits
+
+# Débogage et profilage
+*.dSYM/
+*.pdb
+*.ilk
+*.gcda
+*.gcno
+core
+core.*
+vgcore.*
+
+# Éditeurs et IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cache/
+
+# Systèmes d'exploitation
+.DS_Store
+Thumbs.db
